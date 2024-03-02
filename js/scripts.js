@@ -1,17 +1,17 @@
 let pokemonList = [
     {name: 'Bulbasaur',
-    height: 7,
+    height: 0.7,
     types: [
         'grass',
         'poison'
     ]},
     {name: 'Charmander',
-    height: 6,
+    height: 0.6,
     types: [
         'fire'
     ]},
     {name: 'Dratini',
-    height: 18,
+    height: 1.8,
     types: [
         'dragon'
     ]}
