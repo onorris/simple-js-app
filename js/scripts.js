@@ -16,3 +16,7 @@ let pokemonList = [
         'dragon'
     ]}
 ]
+
+pokemonList.forEach(function(pokemon) {
+    document.write(pokemon.name + ' is a ' + pokemon.types + ' pokemon type and is this tall: ' + pokemon.height + '.  ');
+});
