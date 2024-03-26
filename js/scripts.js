@@ -33,21 +33,31 @@ let pokemonRepository = (function () {
     function filterPokemon(pokemon) {
         return pokemonList.filter((el) => el.name === pokemon)
     }
+    function addListItem(pokemon){
+        let list = document.querySelector('.pokemon-list')
+        let listItem = document.createElement('li')
+        let button = document.createElement('button')
+        button.innerText = pokemon.name
+        button.classList.add('pokemon-button')
+        listItem.appendChild(button)
+        list.appendChild(listItem)  
+    }
     return {
         filterPokemon: filterPokemon,
         add: add,
-        getAll: getAll
-    };
+        getAll: getAll,
+        addListItem: addListItem
+    }
+    ;
 })();
 
 //adds Pikachu to pokemonRepository
 pokemonRepository.add({name: 'Pikachu', height: 0.4, types:'electric'});
 
-pokemonRepository.getAll().forEach(function(pokemon) {
-    document.write(pokemon.name + ' is a ' + pokemon.types + ' pokemon type and is this tall: ' + pokemon.height + 'm.  ');
-});
-
-
-
 filtered = pokemonRepository.filterPokemon('Dratini')
 console.log(filtered)
+
+//references the function in the IIFE
+pokemonRepository.getAll().forEach(function (pokemon){
+    pokemonRepository.addListItem(pokemon); 
+})
