@@ -98,17 +98,17 @@ let pokemonRepository = (function () {
             contentElement.innerText = "This Pokemon is " + pokemon.height/10 + " m.";
             
             //add Pokemon image
-            
+            let imageElementFront = $('img class="modal-img" style="width:50%">');
+            imageElementFront.attr("src", item.imageUrlFront);
 
-            //let imageElement = document.createElement("img");
-            //imageElement.src = pokemon.imageUrlFront;
-            //imageElement.alt = pokemon.name;
-            //imageElement.classList.add("modal-image");
+            let imageElementBack = $('<img class="modal-img" style= "width:50%">');
+            imageElementBack.attr("src", item.imageElementBack);
 
             modal.appendChild(closeButtonElement);
             modal.appendChild(titleElement);
             modal.appendChild(contentElement);
-            modal.appendChild(imageElement);
+            modal.appendChild(imageElementFront);
+            modal.appendChild(imageElementBack)
             modalContainer.appendChild(modal);
 
             modalContainer.classList.add('is-visible');
