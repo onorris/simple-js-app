@@ -73,6 +73,11 @@ let pokemonRepository = (function () {
 
     //building information needed for modal prior to showing it
     function buildModal(pokemon) {
+            let modalBody = $(".modal-body");
+            let modalTitle = $(".modal-title");
+            let modalHeader = $(".modal-header");
+            modalTitle.empty();
+            modalBody.empty();
         
             let modal = document.createElement('div');
             modal.classList.add('modal');
