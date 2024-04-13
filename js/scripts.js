@@ -96,6 +96,8 @@ let pokemonRepository = (function () {
             // add Pokemon height information in modal
             let heightElement = $("<p>" + "This Pokemon is " + pokemon.height/10 + " m." + "</p>");
             
+            //add Pokemon weight information in modal - DOUBLE CHECK IF WEIGHT IS DEFINED?
+            let weightElement = $("<p>" + "This Pokemon is " + pokemon.weight + ".</p>" );
             
             //add Pokemon image
             let imageElementFront = $('img class="modal-img" style="width:50%">');
@@ -107,6 +109,7 @@ let pokemonRepository = (function () {
             modal.appendChild(closeButtonElement);
             modal.appendChild(titleElement);
             modal.appendChild(heightElement);
+            modal.appendChild(weightElement);
             modal.appendChild(imageElementFront);
             modal.appendChild(imageElementBack)
             modalContainer.appendChild(modal);
