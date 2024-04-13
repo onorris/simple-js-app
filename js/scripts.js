@@ -74,10 +74,13 @@ let pokemonRepository = (function () {
     //building information needed for modal prior to showing it
     function buildModal(pokemon) {
             let modalBody = $(".modal-body");
-            let modalTitle = $(".modal-title");
             let modalHeader = $(".modal-header");
+            let modalTitle = $(".modal-title");
+            
+            //clear existing content of the modal
             modalTitle.empty();
             modalBody.empty();
+            modalHeader.empty();
         
             let modal = document.createElement('div');
             modal.classList.add('modal');
@@ -87,19 +90,20 @@ let pokemonRepository = (function () {
             closeButtonElement.classList.add('modal-close');
             closeButtonElement.innerText = 'Close';
             
-            // adds Pokemon name as title in modal
-            let titleElement = document.createElement('h1');
-            titleElement.innerText = pokemon.name;
-
+            // adds Pokemon name in modal
+            let titleElement = $("<h1>" + pokemon.name + "</h1>")
+            
             // add Pokemon height information in modal
             let contentElement = document.createElement('p');
             contentElement.innerText = "This Pokemon is " + pokemon.height/10 + " m.";
             
             //add Pokemon image
-            let imageElement = document.createElement("img");
-            imageElement.src = pokemon.imageUrlFront;
-            imageElement.alt = pokemon.name;
-            imageElement.classList.add("modal-image");
+            
+
+            //let imageElement = document.createElement("img");
+            //imageElement.src = pokemon.imageUrlFront;
+            //imageElement.alt = pokemon.name;
+            //imageElement.classList.add("modal-image");
 
             modal.appendChild(closeButtonElement);
             modal.appendChild(titleElement);
