@@ -112,6 +112,8 @@ let pokemonRepository = (function () {
             let imageElementBack = $('<img class="modal-img" style= "width:50%">');
             imageElementBack.attr("src", item.imageElementBack);
 
+
+            //START AT MODAL VIDEO 4:42 
             modal.appendChild(closeButtonElement);
             modal.appendChild(titleElement);
             modal.appendChild(heightElement);
