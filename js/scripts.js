@@ -94,8 +94,8 @@ let pokemonRepository = (function () {
             let titleElement = $("<h1>" + pokemon.name + "</h1>")
             
             // add Pokemon height information in modal
-            let contentElement = document.createElement('p');
-            contentElement.innerText = "This Pokemon is " + pokemon.height/10 + " m.";
+            let heightElement = $("<p>" + "This Pokemon is " + pokemon.height/10 + " m." + "</p>");
+            
             
             //add Pokemon image
             let imageElementFront = $('img class="modal-img" style="width:50%">');
@@ -106,7 +106,7 @@ let pokemonRepository = (function () {
 
             modal.appendChild(closeButtonElement);
             modal.appendChild(titleElement);
-            modal.appendChild(contentElement);
+            modal.appendChild(heightElement);
             modal.appendChild(imageElementFront);
             modal.appendChild(imageElementBack)
             modalContainer.appendChild(modal);
