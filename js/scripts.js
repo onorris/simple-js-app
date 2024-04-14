@@ -22,17 +22,24 @@ let pokemonRepository = (function () {
         
     //DOM manipulation - function to add button for a given pokemon
     function addListItem(pokemon){ //open addListItem
-        let pokemonList = document.querySelector(".pokemon-list");
+        let pokemonList = document.querySelector(".list-group");
         let listPokemon = document.createElement("li");
         let button = document.createElement("button");
         //button information
         button.innerText = pokemon.name;
-        button.classList.add("pokemon-button");
-        button.addEventListener('click', function(event) {
-            showModal(pokemon);
-        })
+        //changed classes and attributes to work with Bootstrap
+        button.classList.add("btn-primary", "btn-block", "btn-lg", "mb-3");
+        button.setAttribute("data-target", "exampleModal");
+        button.setAttribute("data-toggle", "modal");
+
         listPokemon.appendChild(button);
         pokemonList.appendChild(listPokemon);
+    }
+
+    function addEventListenerButton(button, pokemon) {
+        button.addEventListener('click', function() {
+            showDetails(pokemon);
+        })
     }
 
     //PROMIS function fetchAllPokemon - fetch pokemon list from API (just name and url) and convert to json
@@ -93,6 +100,13 @@ let pokemonRepository = (function () {
             // adds Pokemon name in modal
             let titleElement = $("<h1>" + pokemon.name + "</h1>")
             
+            //add Pokemon image
+            let imageElementFront = $('img class="modal-img" style="width:50%">');
+            imageElementFront.attr("src", item.imageUrlFront);
+            
+            let imageElementBack = $('<img class="modal-img" style= "width:50%">');
+            imageElementBack.attr("src", item.imageElementBack);
+
             // add Pokemon height information in modal
             let heightElement = $("<p>" + "This Pokemon is " + pokemon.height/10 + " m." + "</p>");
             
@@ -105,26 +119,17 @@ let pokemonRepository = (function () {
             //add Pokemon abilities in modal content
             let abilitiesElement = $("<p>" + "Pokemon abilities:" + pokemon.abilities + ".</p>");
             
-            //add Pokemon image
-            let imageElementFront = $('img class="modal-img" style="width:50%">');
-            imageElementFront.attr("src", item.imageUrlFront);
+            modalTitle.append(nameElement);
+            modalBody.appendChild(imageElementFront);
+            modalBody.appendChild(imageElementBack);
+            modalBody.appendChild(heightElement);
+            modalBody.appendChild(weightElement);
+            modalBody.appendChild(typesElement);
+            modalBody.appendChild(abilitiesElement);
 
-            let imageElementBack = $('<img class="modal-img" style= "width:50%">');
-            imageElementBack.attr("src", item.imageElementBack);
-
-
-            //START AT MODAL VIDEO 4:42 
-            modal.appendChild(closeButtonElement);
-            modal.appendChild(titleElement);
-            modal.appendChild(heightElement);
-            modal.appendChild(weightElement);
-            modal.appendChild(typesElement);
-            modal.appendChild(abilitiesElement);
-            modal.appendChild(imageElementFront);
-            modal.appendChild(imageElementBack)
-            modalContainer.appendChild(modal);
-
-            modalContainer.classList.add('is-visible');
+           // modalContainer.appendChild(modal);
+           //modalBody.appendChild(closeButtonElement);
+            //modalContainer.classList.add('is-visible');
 
             //click outside of modal container closes it
             modalContainer.addEventListener('click', (e) => {
@@ -162,6 +167,7 @@ let pokemonRepository = (function () {
     return {
         add: add,
         addListItem: addListItem,
+        addEventListenerButton: addEventListenerButton,
         getAll: getAll,
         fetchAllPokemon: fetchAllPokemon,
         loadDetails: loadDetails,
