@@ -57,6 +57,9 @@
     text-align: center;
   }
 
+  .modal-title {
+    text-transform: capitalize;
+  }
   
 #results {
   display: block;
