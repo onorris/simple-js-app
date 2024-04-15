@@ -110,10 +110,10 @@ let pokemonRepository = (function () {
             let heightElement = $("<p>" + "This Pokemon is " + pokemon.height/10 + " m." + "</p>");
             
             //add Pokemon weight information in modal - DOUBLE CHECK IF WEIGHT IS DEFINED?
-            let weightElement = $("<p>" + "This Pokemon is " + pokemon.weight/10 + "kg." + "</p>" );
+            let weightElement = $("<p>" + "This Pokemon is " + pokemon.weight/10 + " kg." + "</p>" );
 
             //add Pokemon type element in modal 
-            let typesElement = $("<p>" + "Pokemon type(s):" + pokemon.types + ".</p>");
+            let typesElement = $("<p>" + "Pokemon type(s): " + pokemon.types + ".</p>");
             
             modalHeader.append(titleElement);
             modalBody.append(imageElementFront);
