@@ -8,10 +8,12 @@
     text-align: center;
     text-transform: uppercase;
     font-weight: 400;
-
-
 }
-.pokemon-button {
+
+.body {
+  padding-top:100px;
+}
+.btn-primary {
     background-color: #4caf50;
     border: none;
     color: white;
@@ -28,6 +30,7 @@
     border: 2px solid #4caf50;
     font-variant: small-caps;
     list-style-type:none;
+    width: 25%;
 }
 #modal-container {
     display: none;
@@ -53,7 +56,14 @@
     display: grid;
     text-align: center;
   }
-  .modal {
+
+  
+#results {
+  display: block;
+  padding: 10px;
+}
+
+ /* .modal {
     margin: auto;
     display: inline-block;
     box-sizing: border-box;
@@ -82,3 +92,5 @@
     margin-bottom: 0;
   }
 
+
+*/

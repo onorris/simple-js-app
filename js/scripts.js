@@ -4,7 +4,6 @@ let pokemonRepository = (function () {
     //declaring variables
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-    let modalContainer = document.querySelector('#modal-container');
   
     // adds pokemon to pokemonList (empty array[] at top) by confirming type and name
     function add(pokemon){ //open add fxn
@@ -29,16 +28,18 @@ let pokemonRepository = (function () {
         button.innerText = pokemon.name;
         //changed classes and attributes to work with Bootstrap
         button.classList.add("btn-primary", "btn-block", "btn-lg", "mb-3");
-        button.setAttribute("data-target", "exampleModal");
+        button.setAttribute("data-target", "#exampleModal");
         button.setAttribute("data-toggle", "modal");
 
         listPokemon.appendChild(button);
         pokemonList.appendChild(listPokemon);
+
+        addEventListenerButton(button, pokemon);
     }
 
     function addEventListenerButton(button, pokemon) {
         button.addEventListener('click', function() {
-            showDetails(pokemon);
+            showModal(pokemon);
         })
     }
 
@@ -72,7 +73,9 @@ let pokemonRepository = (function () {
           .then((details) =>  {
             pokemon.imageUrlFront = details.sprites.front_default;
             pokemon.height = details.height;
+            pokemon.weight = details.weight;
             pokemon.types = details.types.map((type) => type.type.name);
+            pokemon.abilities = details.abilites;
             return pokemon;
           })
           .catch((error) => console.error(error));
@@ -82,15 +85,11 @@ let pokemonRepository = (function () {
     function buildModal(pokemon) {
             let modalBody = $(".modal-body");
             let modalHeader = $(".modal-header");
-            let modalTitle = $(".modal-title");
+            modalBody.innerHTML = '';
             
             //clear existing content of the modal
-            modalTitle.empty();
             modalBody.empty();
             modalHeader.empty();
-        
-            let modal = document.createElement('div');
-            modal.classList.add('modal');
 
             //Modal closes when Close button is clicked. 
             let closeButtonElement = document.createElement('button');
@@ -98,57 +97,33 @@ let pokemonRepository = (function () {
             closeButtonElement.innerText = 'Close';
             
             // adds Pokemon name in modal
-            let titleElement = $("<h1>" + pokemon.name + "</h1>")
-            
+            let titleElement = $('<h1 class = "modal-title">' + pokemon.name + '</h1>')
+            //console.log(titleElement)
             //add Pokemon image
-            let imageElementFront = $('img class="modal-img" style="width:50%">');
-            imageElementFront.attr("src", item.imageUrlFront);
+            let imageElementFront = $('<img class="modal-img" style="width:50%">');
+            imageElementFront.attr("src", pokemon.imageUrlFront);
             
             let imageElementBack = $('<img class="modal-img" style= "width:50%">');
-            imageElementBack.attr("src", item.imageElementBack);
+            imageElementBack.attr("src", pokemon.imageElementBack);
 
             // add Pokemon height information in modal
             let heightElement = $("<p>" + "This Pokemon is " + pokemon.height/10 + " m." + "</p>");
             
             //add Pokemon weight information in modal - DOUBLE CHECK IF WEIGHT IS DEFINED?
-            let weightElement = $("<p>" + "This Pokemon is " + pokemon.weight + ".</p>" );
+            let weightElement = $("<p>" + "This Pokemon is " + pokemon.weight/10 + "kg." + "</p>" );
 
             //add Pokemon type element in modal 
             let typesElement = $("<p>" + "Pokemon type(s):" + pokemon.types + ".</p>");
-
-            //add Pokemon abilities in modal content
-            let abilitiesElement = $("<p>" + "Pokemon abilities:" + pokemon.abilities + ".</p>");
             
-            modalTitle.append(nameElement);
-            modalBody.appendChild(imageElementFront);
-            modalBody.appendChild(imageElementBack);
-            modalBody.appendChild(heightElement);
-            modalBody.appendChild(weightElement);
-            modalBody.appendChild(typesElement);
-            modalBody.appendChild(abilitiesElement);
+            modalHeader.append(titleElement);
+            modalBody.append(imageElementFront);
+            modalBody.append(imageElementBack);
+            modalBody.append(heightElement);
+            modalBody.append(weightElement);
+            modalBody.append(typesElement);
 
-           // modalContainer.appendChild(modal);
-           //modalBody.appendChild(closeButtonElement);
-            //modalContainer.classList.add('is-visible');
-
-            //click outside of modal container closes it
-            modalContainer.addEventListener('click', (e) => {
-                let target = e.target;
-                if (target === modalContainer) {
-                    hideModal();
-                }
-            })
-
-            //ESC button closes modal
-            window.addEventListener('keydown', (e) => {
-                let modalContainer = document.querySelector('#modal-container');
-                if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')){
-                hideModal();
-            }
-        })
-            //Adds hideModal to the close button within the modal
-            closeButtonElement.addEventListener('click', hideModal);
     };
+
 // calls loadDetails to get the details and passes that into buildModal to actually show the modal
     function showModal(pokemon){
         loadDetails(pokemon).then((details) => {
@@ -157,11 +132,11 @@ let pokemonRepository = (function () {
     }
 
     //Logic used to hide modal when called
-    function hideModal() {
-        modalContainer.classList.remove('is-visible');
+     function hideModal() {
+        modal.classList.remove('is-visible');
         //when hideModal is called, it replaces the children with nothing
-        modalContainer.replaceChildren()
-    }
+        modal.replaceChildren()
+        }
 
     //ALL functions need to be added to return in order to work
     return {
