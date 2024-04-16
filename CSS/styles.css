@@ -64,6 +64,7 @@
   }
   
 #results {
-  display: flex;
+  display: flex-wrap;
+  flex-direction: row;
   justify-content: center;
 }
