@@ -22,12 +22,13 @@ let pokemonRepository = (function () {
     //DOM manipulation - function to add button for a given pokemon
     function addListItem(pokemon){ //open addListItem
         let pokemonList = document.querySelector(".list-group");
-        let listPokemon = document.createElement("li");
+        let listPokemon = document.createElement("div");
+        listPokemon.setAttribute("id", "results");
         let button = document.createElement("button");
         //button information
         button.innerText = pokemon.name;
         //changed classes and attributes to work with Bootstrap
-        button.classList.add("btn-primary", "btn-block", "btn-lg", "mb-3");
+        button.classList.add("btn-primary", "btn-lg", "mb-3");
         button.setAttribute("data-target", "#exampleModal");
         button.setAttribute("data-toggle", "modal");
 

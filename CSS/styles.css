@@ -29,7 +29,6 @@
     border: 2px solid #9A2323;
     font-variant: small-caps;
     list-style-type:none;
-    width: 100%;
 }
 #modal-container {
     display: none;
@@ -65,6 +64,6 @@
   }
   
 #results {
-  display: block;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
 }
