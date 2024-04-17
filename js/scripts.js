@@ -165,7 +165,6 @@ function searchFunction() {
   input = document.getElementById('search-bar');
   filter = input.value.toUpperCase();
   li = document.querySelectorAll(".list-group > #results");
-  console.log(li);
 
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
