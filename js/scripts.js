@@ -3,7 +3,7 @@
 let pokemonRepository = (function () {
     //declaring variables
     let pokemonList = [];
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=155';
   
     // adds pokemon to pokemonList (empty array[] at top) by confirming type and name
     function add(pokemon){ //open add fxn
@@ -161,7 +161,7 @@ pokemonRepository.fetchAllPokemon().then(function() {
 
 function searchFunction() {
     // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
+  var input, filter, li, a, i, txtValue;
   input = document.getElementById('search-bar');
   filter = input.value.toUpperCase();
   li = document.querySelectorAll(".list-group > #results");
