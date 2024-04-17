@@ -3,7 +3,7 @@
 let pokemonRepository = (function () {
     //declaring variables
     let pokemonList = [];
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
   
     // adds pokemon to pokemonList (empty array[] at top) by confirming type and name
     function add(pokemon){ //open add fxn
@@ -158,3 +158,23 @@ pokemonRepository.fetchAllPokemon().then(function() {
         pokemonRepository.addListItem(pokemon); 
     });
 },);
+
+function searchFunction() {
+    // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('search-bar');
+  filter = input.value.toUpperCase();
+  li = document.querySelectorAll(".list-group > #results");
+  console.log(li);
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("button")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
