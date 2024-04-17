@@ -14,7 +14,6 @@
   padding-top:100px;
 }
 .btn-primary {
-    background-color: #4caf50;
     border: none;
     color: white;
     padding: 16px 32px;
@@ -24,18 +23,24 @@
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    background-color:#E17A7A;
+    background-color:#C7E9F0;
+    font-weight: 500;
     color: black;
     border: 2px solid #9A2323;
     font-variant: small-caps;
     list-style-type:none;
+    width: 200px;
 }
 #modal-container {
     display: none;
   }
 
 .list-group {
+  flex-wrap: wrap;
   align-content:center;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 #modal-container.is-visible {
@@ -63,8 +68,3 @@
     text-transform: capitalize;
   }
   
-#results {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
