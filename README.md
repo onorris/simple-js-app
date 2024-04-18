@@ -1,8 +1,8 @@
 ## Pokedex App
 
-> I built this cool app :bulb:
+> I built a JavaScript App using a Pokemon API
 
-- it calls 2 apis
-- creates a button for each pokemon
-    - each button then pops up a modal for that pokemon's stats
-- has a search bar to filter down the pokemon
+- Uses HTML, CSS and Javascript, with Bootstrap UI pattern
+- It creates a button for each Pokemon, listing its name
+    - On user action (click), each button then pops up a modal for that particular Pokemon's stats (weight, height, and types)
+- Has a search bar to filter down the pokemon by name
